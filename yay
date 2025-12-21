@@ -1,0 +1,174 @@
+Project Title: Packaged Foods Management System
+1. Overview
+The Packaged Foods Management System is designed to manage operations for packaged 
+food products, including product catalog, stock monitoring, order processing, and compliance 
+tracking. It provides functionalities for product registration, batch tracking, expiry alerts, billing, 
+and reporting, all implemented using an MVC architecture.
+This design supports both Java (Spring MVC) and .NET (ASP.NET Core MVC) frameworks.
+The system consists of five primary modules:
+1. Product & Batch Management
+2. Customer Management
+3. Order & Billing Management
+4. Inventory & Expiry Tracking
+5. User Authentication & Authorization
+2. Assumptions
+• The system will be deployed locally using MySQL or SQL Server.
+• Role-based access will be implemented for Admin, Store Manager, and Customer 
+roles.
+• ORM tools (Hibernate for Java, Entity Framework Core for .NET) will handle 
+database interactions.
+• The UI will be responsive and optimized for mobile and desktop users.
+• Expiry alerts will be triggered based on batch dates.
+3. Module-Level Design
+3.1 Product & Batch Management Module
+Purpose: Handles product registration and batch details.
+• Controller:
+o ProductController
+▪ addProduct()
+▪ updateProduct()
+▪ getProductDetails()
+▪ getAllProducts()
+• Service
+
+o ProductService
+▪ Business logic for product lifecycle.
+• Model:
+o Product Entity 
+▪ Attributes: 
+▪ productId (PK)
+▪ name
+▪ category
+▪ price
+▪ status (ACTIVE, INACTIVE)
+• Batch Entity:
+o Attributes: 
+▪ batchId (PK)
+▪ productId (FK)
+▪ manufactureDate
+▪ expiryDate
+▪ quantity
+3.2 Customer Management Module
+Purpose: Manages customer profiles and purchase history.
+• Controller:
+o CustomerController
+▪ addCustomer()
+▪ updateCustomer()
+▪ getCustomerDetails()
+• Service:
+o CustomerService
+▪ Handles customer lifecycle.
+• Model:
+o Customer Entity 
+▪ Attributes: 
+▪ customerId (PK)
+▪ name
+▪ email
+▪ phone
+▪ status (ACTIVE, INACTIVE
+3.3 Order & Billing Management Module
+Purpose: Processes orders and billing.
+• Controller:
+o OrderController
+▪ placeOrder()
+▪ getOrderDetails()
+▪ generateBill()
+• Service:
+o OrderService
+▪ Handles order lifecycle and billing.
+• Model:
+o Order Entity 
+▪ Attributes: 
+▪ orderId (PK)
+▪ customerId (FK)
+▪ orderDate
+▪ totalAmount
+3.4 Inventory & Expiry Tracking Module
+Purpose: Tracks stock levels and expiry alerts.
+• Controller:
+o InventoryController
+▪ updateStock()
+▪ getStockReport()
+▪ checkExpiry()
+• Service:
+o InventoryService
+▪ Calculates stock availability and expiry alerts.
+• Model:
+o Inventory Entity 
+▪ Attributes: 
+▪ inventoryId (PK)
+▪ batchId (FK)
+▪ quantity
+3.5 User Authentication & Authorization Module
+Purpose: Provides secure login and role-based access.
+• Controller:
+o AuthController
+▪ login()
+▪ registerUser()
+▪ logout()
+▪ getUserProfile()
+• Service:
+o AuthService
+▪ Handles authentication and authorization.
+• Model:
+o User Entity 
+▪ Attributes: 
+▪ userId (PK)
+▪ username
+▪ password (hashed)
+▪ email
+▪ role (ADMIN, STORE_MANAGER, CUSTOMER)
+4. Database Schema
+Product Table
+CREATE TABLE Product (
+productId INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+category VARCHAR(50),
+price DECIMAL(10,2),
+status ENUM('ACTIVE','INACTIVE')
+);
+Batch Table
+CREATE TABLE Batch (
+batchId INT AUTO_INCREMENT PRIMARY KEY,
+productId INT,
+manufactureDate DATE,
+expiryDate DATE,
+quantity INT,
+FOREIGN KEY (productId) REFERENCES Product(productId
+
+);
+Customer Table
+CREATE TABLE Customer (
+customerId INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100),
+phone VARCHAR(15),
+status ENUM('ACTIVE','INACTIVE')
+);
+Order Table
+CREATE TABLE Orders (
+orderId INT AUTO_INCREMENT PRIMARY KEY,
+customerId INT,
+orderDate DATE,
+totalAmount DECIMAL(10,2),
+FOREIGN KEY (customerId) REFERENCES Customer(customerId)
+);
+User Table
+CREATE TABLE User (
+userId INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(50) UNIQUE,
+password VARCHAR(255),
+email VARCHAR(100),
+role ENUM('ADMIN','STORE_MANAGER','CUSTOMER')
+);
+5. Local Deployment Details
+• Install MySQL or SQL Server, JDK 17/21/24 or .NET SDK 8.0.
+• Deploy using Apache Tomcat (Java) or Kestrel (.NET).
+• Steps: 
+1. Clone repository from GitHub/Bitbucket.
+2. Set up database schema.
+3. Configure application.properties or appsettings.json.
+4. Build and run application.
+6. Conclusion
+The Packaged Foods Management System provides a modular MVC design for managing 
+products, batches, customers, and inventory with expiry alerts. It ensures secure role-based 
+access and efficient local deployment
