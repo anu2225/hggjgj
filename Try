@@ -1,230 +1,199 @@
-समजलं Anurag 🔥
-आता serious level demo करायचा आहे 👍
-👉 Blinkit app सारखा modern UI
-👉 पण फक्त तुझाच Customer Management Module
-👉 Frontend-only, Cognizant demo–ready
-👉 Clean, professional, mobile-friendly
-खाली मी तुला complete redesign देतो — colors, layout, cards, buttons Blinkit-style 💚
-🟢 CUSTOMER MANAGEMENT MODULE
-🔥 BLINKIT-STYLE FRONTEND (HTML + CSS + JS)
-1️⃣ Folder Structure (FINAL – Copy Exactly)
+ठीक आहे Anurag 👍
+आता मी फक्त Customer Management Module चा पूर्ण FRONT-END setup देतो
+👉 ASP.NET Core MVC project मध्ये
+👉 तुझ्या सध्याच्या Visual Studio setup ला match होईल
+👉 Step-by-step + exact file names + full code
+हे follow केलंस की Customer module complete आणि run-ready होईल.
+✅ CUSTOMER MANAGEMENT MODULE
+(ASP.NET Core MVC – FRONTEND ONLY)
+1️⃣ Module मध्ये काय cover होईल (Project document प्रमाणे)
+Customer Management Module
+Customer List
+Add Customer
+(Update optional – demo साठी list + add enough)
+Customer fields (exact match):
+customerId
+name
+email
+phone
+status (ACTIVE / INACTIVE)
+2️⃣ Folder & File Structure (IMPORTANT)
+Visual Studio मध्ये exact असंच असायला हवं:
 Copy code
 
-CustomerManagementFrontend
+PackageFoodManagementSystem
 │
-├── index.html              // Customer List (Dashboard)
-├── add-customer.html       // Add Customer
+├── Controllers
+│   └── CustomerController.cs
 │
-├── css
-│   └── blinkit-style.css
+├── Views
+│   ├── Customer
+│   │   ├── CustomerList.cshtml
+│   │   └── AddCustomer.cshtml
+│   │
+│   └── Shared
+│       └── _Layout.cshtml
 │
-└── js
-    └── customer.js
-2️⃣ Design Theme (Explain करायला heavy point)
-Blinkit green theme
-Card-based layout
-Rounded buttons
-Mobile + desktop friendly
-Fast, clean UX
-3️⃣ css/blinkit-style.css
+├── wwwroot
+│   └── css
+│       └── site.css
+3️⃣ Controller Setup
+📄 Controllers/CustomerController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class CustomerController : Controller
+    {
+        public IActionResult CustomerList()
+        {
+            return View();
+        }
+
+        public IActionResult AddCustomer()
+        {
+            return View();
+        }
+    }
+}
+👉 Backend नाही, database नाही – frontend demo साठी perfect
+4️⃣ Customer List Page
+📄 Views/Customer/CustomerList.cshtml
+Copy code
+Html
+@{
+    ViewData["Title"] = "Customer List";
+}
+
+<h3>Customer List</h3>
+
+<a asp-controller="Customer"
+   asp-action="AddCustomer"
+   class="btn btn-primary mb-3">
+    Add Customer
+</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Anurag Jadhav</td>
+            <td>anurag@gmail.com</td>
+            <td>9876543210</td>
+            <td>ACTIVE</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Rahul Patil</td>
+            <td>rahul@gmail.com</td>
+            <td>9123456789</td>
+            <td>INACTIVE</td>
+        </tr>
+    </tbody>
+</table>
+5️⃣ Add Customer Page
+📄 Views/Customer/AddCustomer.cshtml
+Copy code
+Html
+@{
+    ViewData["Title"] = "Add Customer";
+}
+
+<h3>Add Customer</h3>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label">Customer Name</label>
+        <input class="form-control" placeholder="Enter name" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" placeholder="Enter email" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input class="form-control" placeholder="Enter phone number" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select class="form-control">
+            <option>ACTIVE</option>
+            <option>INACTIVE</option>
+        </select>
+    </div>
+
+    <button class="btn btn-success">Save Customer</button>
+
+    <a asp-controller="Customer"
+       asp-action="CustomerList"
+       class="btn btn-secondary">
+        Back
+    </a>
+</form>
+6️⃣ CSS (optional पण professional दिसतं)
+📄 wwwroot/css/site.css
 Copy code
 Css
 body {
-    background-color: #f5f7f6;
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
 }
 
-.navbar {
-    background-color: #0c831f;
+h3 {
+    margin-bottom: 15px;
+}
+
+.table {
+    background-color: white;
 }
 
 .navbar-brand {
     font-weight: bold;
-    color: white !important;
 }
-
-.card {
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.btn-green {
-    background-color: #0c831f;
-    color: white;
-    border-radius: 30px;
-}
-
-.btn-green:hover {
-    background-color: #096a19;
-    color: white;
-}
-
-.badge-active {
-    background-color: #0c831f;
-}
-
-.badge-inactive {
-    background-color: #dc3545;
-}
-
-input, select {
-    border-radius: 10px !important;
-}
-
-.page-title {
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-4️⃣ index.html – Customer List (Blinkit Dashboard Feel)
+7️⃣ Bootstrap link check कर (IMPORTANT)
+📄 Views/Shared/_Layout.cshtml
+<head> मध्ये हे असलं पाहिजे:
 Copy code
 Html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Customer Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/blinkit-style.css" rel="stylesheet">
-</head>
-<body>
-
-<nav class="navbar p-3">
-    <span class="navbar-brand">Customer Manager</span>
-</nav>
-
-<div class="container mt-4">
-
-    <div class="d-flex justify-content-between align-items-center">
-        <h4 class="page-title">Customers</h4>
-        <a href="add-customer.html" class="btn btn-green">+ Add Customer</a>
-    </div>
-
-    <div class="row mt-3">
-
-        <!-- Customer Card -->
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h6>Anurag Jadhav</h6>
-                <small>anurag@gmail.com</small><br>
-                <small>📞 9876543210</small><br><br>
-                <span class="badge badge-active">ACTIVE</span>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h6>Rahul Patil</h6>
-                <small>rahul@gmail.com</small><br>
-                <small>📞 9123456789</small><br><br>
-                <span class="badge badge-inactive">INACTIVE</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-</body>
-</html>
-5️⃣ add-customer.html – Add Customer (Blinkit App Feel)
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+<link rel="stylesheet" href="~/css/site.css" />
+8️⃣ Run & Test (NO 404)
+▶️ Run button click कर
+Browser open होईल
+URL टाक:
 Copy code
-Html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Customer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/blinkit-style.css" rel="stylesheet">
-</head>
-<body>
 
-<nav class="navbar p-3">
-    <span class="navbar-brand">Add Customer</span>
-</nav>
-
-<div class="container mt-4">
-
-    <div class="card p-4">
-        <h5 class="page-title">Customer Details</h5>
-
-        <form id="customerForm">
-
-            <div class="mb-3">
-                <label>Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Enter full name">
-            </div>
-
-            <div class="mb-3">
-                <label>Email</label>
-                <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
-            </div>
-
-            <div class="mb-3">
-                <label>Phone</label>
-                <input type="text" id="phone" class="form-control" placeholder="10 digit mobile number">
-            </div>
-
-            <div class="mb-3">
-                <label>Status</label>
-                <select id="status" class="form-control">
-                    <option value="">Select Status</option>
-                    <option value="ACTIVE">ACTIVE</option>
-                    <option value="INACTIVE">INACTIVE</option>
-                </select>
-            </div>
-
-            <button class="btn btn-green w-100">Save Customer</button>
-
-        </form>
-    </div>
-
-</div>
-
-<script src="js/customer.js"></script>
-</body>
-</html>
-6️⃣ js/customer.js – Validation + Demo
-Copy code
-Javascript
-document.getElementById("customerForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let phone = document.getElementById("phone").value.trim();
-    let status = document.getElementById("status").value;
-
-    if (!name || !email || !phone || !status) {
-        alert("Please fill all details");
-        return;
-    }
-
-    if (phone.length !== 10 || isNaN(phone)) {
-        alert("Enter valid phone number");
-        return;
-    }
-
-    alert("Customer Added Successfully (Blinkit-style UI Demo)");
-    window.location.href = "index.html";
-});
-7️⃣ Demo मध्ये काय heavy impression पडतो?
-✔ Blinkit-like modern UI
-✔ Cards instead of boring tables
-✔ Mobile-friendly look
-✔ Clean customer flow
-🗣️ Cognizant Demo Line (🔥 IMP)
-“I designed the Customer Management module frontend with a modern Blinkit-style UI.
-It focuses on clean UX, responsive design, and card-based customer views.
-The module handles customer creation and status management.
-Backend integration will be done using ASP.NET Core.”
+https://localhost:xxxx/Customer/CustomerList
+Add Customer वर click कर
+✔ Navigation perfect
+✔ No 404
+🗣️ Cognizant Demo Line (EXACT बोल)
+“This is the Customer Management module frontend built using ASP.NET Core MVC.
+The module allows viewing and adding customers.
+Views handle UI and controller manages routing.
+Currently, this is frontend-only and backend integration will be added later.”
 ✅ FINAL CONFIRMATION
-✔ Blinkit-style design
-✔ Only Customer Management module
-✔ Frontend-only (as required)
-✔ Demo-ready for Cognizant
-✔ Looks better than most trainees’ projects
-जर तू म्हणशील तर पुढे मी:
-Order module UI same theme
-Full app flow screenshots
-Trainer Q&A
-How to explain design decisions
-देऊ शकतो 💪
-फक्त सांग 👉 next ky karaych?
+✔ Customer Management module complete
+✔ MVC pattern followed
+✔ Matches your project document
+✔ Cognizant demo safe
+✔ Easy to extend (Update/Delete later)
+जर पुढे हवं असेल तर मी:
+Update Customer page
+Same pattern Product / Order modules
+1-page viva notes
+देऊ शकतो.
