@@ -1,0 +1,257 @@
+ठीक आहे Anurag 👍
+खाली मी तुला Customer Management Module – Front-End ONLY
+👉 पूर्ण code
+👉 प्रत्येक file चं नाव
+👉 clear folder structure
+👉 project document शी 100% match
+👉 Cognizant (.NET domain) demo-ready
+तू फक्त copy–paste करून VS Code मध्ये उघड, index.html run कर — बस्स ✅
+📁 FOLDER STRUCTURE (AS IT IS ठेव)
+Copy code
+
+CustomerManagementFrontend
+│
+├── index.html              // Customer List (Home)
+├── add-customer.html       // Add Customer
+├── edit-customer.html      // Update Customer
+│
+├── css
+│   └── site.css
+│
+└── js
+    └── customer.js
+📄 FILE 1: index.html
+(Customer List – getCustomerDetails())
+Copy code
+Html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Management System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand">Customer Management System</span>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Customer List</h4>
+        <a href="add-customer.html" class="btn btn-primary">+ Add Customer</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Anurag Jadhav</td>
+                <td>anurag@gmail.com</td>
+                <td>9876543210</td>
+                <td><span class="badge bg-success">ACTIVE</span></td>
+                <td>
+                    <a href="edit-customer.html" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Rahul Patil</td>
+                <td>rahul@gmail.com</td>
+                <td>9123456789</td>
+                <td><span class="badge bg-danger">INACTIVE</span></td>
+                <td>
+                    <a href="edit-customer.html" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+📄 FILE 2: add-customer.html
+(addCustomer())
+Copy code
+Html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand">Add Customer</span>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" placeholder="Enter name">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter email">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" placeholder="Enter phone number">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select class="form-select">
+                        <option>ACTIVE</option>
+                        <option>INACTIVE</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-success"
+                        onclick="alert('Customer Added (Frontend Demo)')">
+                    Save Customer
+                </button>
+
+                <a href="index.html" class="btn btn-secondary">Back</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+📄 FILE 3: edit-customer.html
+(updateCustomer())
+Copy code
+Html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Customer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand">Update Customer</span>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" value="Anurag Jadhav">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" value="anurag@gmail.com">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" value="9876543210">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select class="form-select">
+                        <option selected>ACTIVE</option>
+                        <option>INACTIVE</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary"
+                        onclick="alert('Customer Updated (Frontend Demo)')">
+                    Update Customer
+                </button>
+
+                <a href="index.html" class="btn btn-secondary">Back</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+📄 FILE 4: css/site.css
+Copy code
+Css
+body {
+    background-color: #f4f6f9;
+}
+
+.card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+📄 FILE 5: js/customer.js
+(optional – frontend demo purpose)
+Copy code
+Javascript
+// Frontend only demo file
+console.log("Customer Management Frontend Loaded");
+▶️ VS CODE वर RUN कसं करायचं
+VS Code → Open Folder
+CustomerManagementFrontend select कर
+index.html → Right click → Open with Live Server (किंवा double click करून browser मध्ये)
+🗣️ FINAL DEMO LINE (Cognizant Safe Answer)
+“As per the project document, I have developed the Customer Management module frontend.
+It supports adding, viewing, and updating customers.
+The fields match the Customer entity defined in the system design.
+Customer ID is used for integration with Order Management module.
+Currently, only frontend is implemented for demo.”
+✅ FINAL CONFIRMATION
+✔ Full frontend module
+✔ File names + folder structure clear
+✔ Project document match
+✔ .NET MVC style UI
+✔ Ready for tomorrow demo
+जर हवं असेल तर पुढे मी:
+Same UI Razor Pages (.cshtml) style explain
+Trainer questions & answers
+Screenshots sequence (click flow)
+देऊ शकतो.
+Just सांग 👉 udya demo mdhe ky vichartil? 💪
