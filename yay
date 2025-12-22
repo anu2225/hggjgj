@@ -1,174 +1,336 @@
-Project Title: Packaged Foods Management System
-1. Overview
-The Packaged Foods Management System is designed to manage operations for packaged 
-food products, including product catalog, stock monitoring, order processing, and compliance 
-tracking. It provides functionalities for product registration, batch tracking, expiry alerts, billing, 
-and reporting, all implemented using an MVC architecture.
-This design supports both Java (Spring MVC) and .NET (ASP.NET Core MVC) frameworks.
-The system consists of five primary modules:
-1. Product & Batch Management
-2. Customer Management
-3. Order & Billing Management
-4. Inventory & Expiry Tracking
-5. User Authentication & Authorization
-2. Assumptions
-• The system will be deployed locally using MySQL or SQL Server.
-• Role-based access will be implemented for Admin, Store Manager, and Customer 
-roles.
-• ORM tools (Hibernate for Java, Entity Framework Core for .NET) will handle 
-database interactions.
-• The UI will be responsive and optimized for mobile and desktop users.
-• Expiry alerts will be triggered based on batch dates.
-3. Module-Level Design
-3.1 Product & Batch Management Module
-Purpose: Handles product registration and batch details.
-• Controller:
-o ProductController
-▪ addProduct()
-▪ updateProduct()
-▪ getProductDetails()
-▪ getAllProducts()
-• Service
+ठीक आहे Anurag 👍
+आता खाली एकदम FINAL – A to Z FRONT-END VERSION देतो.
+हे last reference समज.
+👉 ASP.NET Core MVC (.NET, C#)
+👉 Attractive + professional UI
+👉 All modules included (as per your project doc)
+👉 Images + CSS + Views + Controllers
+👉 Frontend ONLY (demo / Cognizant ready)
+🟢 PACKAGED FOODS MANAGEMENT SYSTEM
+✅ FINAL FRONT-END (A TO Z)
+1️⃣ FINAL PROJECT FOLDER STRUCTURE
+Copy code
 
-o ProductService
-▪ Business logic for product lifecycle.
-• Model:
-o Product Entity 
-▪ Attributes: 
-▪ productId (PK)
-▪ name
-▪ category
-▪ price
-▪ status (ACTIVE, INACTIVE)
-• Batch Entity:
-o Attributes: 
-▪ batchId (PK)
-▪ productId (FK)
-▪ manufactureDate
-▪ expiryDate
-▪ quantity
-3.2 Customer Management Module
-Purpose: Manages customer profiles and purchase history.
-• Controller:
-o CustomerController
-▪ addCustomer()
-▪ updateCustomer()
-▪ getCustomerDetails()
-• Service:
-o CustomerService
-▪ Handles customer lifecycle.
-• Model:
-o Customer Entity 
-▪ Attributes: 
-▪ customerId (PK)
-▪ name
-▪ email
-▪ phone
-▪ status (ACTIVE, INACTIVE
-3.3 Order & Billing Management Module
-Purpose: Processes orders and billing.
-• Controller:
-o OrderController
-▪ placeOrder()
-▪ getOrderDetails()
-▪ generateBill()
-• Service:
-o OrderService
-▪ Handles order lifecycle and billing.
-• Model:
-o Order Entity 
-▪ Attributes: 
-▪ orderId (PK)
-▪ customerId (FK)
-▪ orderDate
-▪ totalAmount
-3.4 Inventory & Expiry Tracking Module
-Purpose: Tracks stock levels and expiry alerts.
-• Controller:
-o InventoryController
-▪ updateStock()
-▪ getStockReport()
-▪ checkExpiry()
-• Service:
-o InventoryService
-▪ Calculates stock availability and expiry alerts.
-• Model:
-o Inventory Entity 
-▪ Attributes: 
-▪ inventoryId (PK)
-▪ batchId (FK)
-▪ quantity
-3.5 User Authentication & Authorization Module
-Purpose: Provides secure login and role-based access.
-• Controller:
-o AuthController
-▪ login()
-▪ registerUser()
-▪ logout()
-▪ getUserProfile()
-• Service:
-o AuthService
-▪ Handles authentication and authorization.
-• Model:
-o User Entity 
-▪ Attributes: 
-▪ userId (PK)
-▪ username
-▪ password (hashed)
-▪ email
-▪ role (ADMIN, STORE_MANAGER, CUSTOMER)
-4. Database Schema
-Product Table
-CREATE TABLE Product (
-productId INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100),
-category VARCHAR(50),
-price DECIMAL(10,2),
-status ENUM('ACTIVE','INACTIVE')
-);
-Batch Table
-CREATE TABLE Batch (
-batchId INT AUTO_INCREMENT PRIMARY KEY,
-productId INT,
-manufactureDate DATE,
-expiryDate DATE,
-quantity INT,
-FOREIGN KEY (productId) REFERENCES Product(productId
+PackageFoodManagementSystem
+│
+├── Controllers
+│   ├── HomeController.cs
+│   ├── CustomerController.cs
+│   ├── ProductController.cs
+│   ├── OrderController.cs
+│   ├── InventoryController.cs
+│   └── AuthController.cs
+│
+├── Views
+│   ├── Shared
+│   │   ├── _Layout.cshtml
+│   │   └── _Sidebar.cshtml
+│   │
+│   ├── Home
+│   │   └── Index.cshtml
+│   │
+│   ├── Customer
+│   │   ├── List.cshtml
+│   │   └── Add.cshtml
+│   │
+│   ├── Product
+│   │   ├── List.cshtml
+│   │   ├── Add.cshtml
+│   │   └── Batch.cshtml
+│   │
+│   ├── Order
+│   │   ├── List.cshtml
+│   │   └── Place.cshtml
+│   │
+│   ├── Inventory
+│   │   ├── Stock.cshtml
+│   │   └── Expiry.cshtml
+│   │
+│   └── Auth
+│       └── Login.cshtml
+│
+├── wwwroot
+│   ├── css
+│   │   └── app.css
+│   │
+│   └── images
+│       ├── logo.png
+│       ├── customers.png
+│       ├── products.png
+│       ├── orders.png
+│       ├── inventory.png
+│       ├── vegetables.png
+│       ├── dairy.png
+│       └── fruits.png
+│
+└── Program.cs
+2️⃣ CONTROLLERS (Routing only – FULL)
+HomeController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
 
-);
-Customer Table
-CREATE TABLE Customer (
-customerId INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(100),
-email VARCHAR(100),
-phone VARCHAR(15),
-status ENUM('ACTIVE','INACTIVE')
-);
-Order Table
-CREATE TABLE Orders (
-orderId INT AUTO_INCREMENT PRIMARY KEY,
-customerId INT,
-orderDate DATE,
-totalAmount DECIMAL(10,2),
-FOREIGN KEY (customerId) REFERENCES Customer(customerId)
-);
-User Table
-CREATE TABLE User (
-userId INT AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(50) UNIQUE,
-password VARCHAR(255),
-email VARCHAR(100),
-role ENUM('ADMIN','STORE_MANAGER','CUSTOMER')
-);
-5. Local Deployment Details
-• Install MySQL or SQL Server, JDK 17/21/24 or .NET SDK 8.0.
-• Deploy using Apache Tomcat (Java) or Kestrel (.NET).
-• Steps: 
-1. Clone repository from GitHub/Bitbucket.
-2. Set up database schema.
-3. Configure application.properties or appsettings.json.
-4. Build and run application.
-6. Conclusion
-The Packaged Foods Management System provides a modular MVC design for managing 
-products, batches, customers, and inventory with expiry alerts. It ensures secure role-based 
-access and efficient local deployment
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class HomeController : Controller
+    {
+        public IActionResult Index() => View();
+    }
+}
+CustomerController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class CustomerController : Controller
+    {
+        public IActionResult List() => View();
+        public IActionResult Add() => View();
+    }
+}
+ProductController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class ProductController : Controller
+    {
+        public IActionResult List() => View();
+        public IActionResult Add() => View();
+        public IActionResult Batch() => View();
+    }
+}
+OrderController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class OrderController : Controller
+    {
+        public IActionResult List() => View();
+        public IActionResult Place() => View();
+    }
+}
+InventoryController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class InventoryController : Controller
+    {
+        public IActionResult Stock() => View();
+        public IActionResult Expiry() => View();
+    }
+}
+AuthController.cs
+Copy code
+Csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace PackageFoodManagementSystem.Controllers
+{
+    public class AuthController : Controller
+    {
+        public IActionResult Login() => View();
+    }
+}
+3️⃣ SHARED LAYOUT (BASE UI)
+_Layout.cshtml
+Copy code
+Html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - Packaged Foods</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/app.css">
+</head>
+<body>
+
+<div class="app">
+    @Html.Partial("_Sidebar")
+    <main class="content">
+        @RenderBody()
+    </main>
+</div>
+
+</body>
+</html>
+_Sidebar.cshtml
+Copy code
+Html
+<div class="sidebar">
+    <img src="~/images/logo.png" class="logo" />
+
+    <a asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Dashboard</a>
+    <a asp-controller="Customer" asp-action="List"><i class="bi bi-people"></i> Customers</a>
+    <a asp-controller="Product" asp-action="List"><i class="bi bi-box"></i> Products</a>
+    <a asp-controller="Order" asp-action="List"><i class="bi bi-receipt"></i> Orders</a>
+    <a asp-controller="Inventory" asp-action="Stock"><i class="bi bi-archive"></i> Inventory</a>
+    <a asp-controller="Auth" asp-action="Login"><i class="bi bi-person"></i> Login</a>
+</div>
+4️⃣ DASHBOARD
+Views/Home/Index.cshtml
+Copy code
+Html
+<h3>Dashboard</h3>
+
+<div class="row">
+    <div class="col-md-3 card dash">
+        <img src="~/images/customers.png">
+        <p>Customers</p>
+    </div>
+    <div class="col-md-3 card dash">
+        <img src="~/images/products.png">
+        <p>Products</p>
+    </div>
+    <div class="col-md-3 card dash">
+        <img src="~/images/orders.png">
+        <p>Orders</p>
+    </div>
+    <div class="col-md-3 card dash">
+        <img src="~/images/inventory.png">
+        <p>Inventory</p>
+    </div>
+</div>
+5️⃣ CUSTOMER MANAGEMENT
+Views/Customer/List.cshtml
+Copy code
+Html
+<h4>Customers</h4>
+<a asp-action="Add" class="btn btn-primary mb-2">Add Customer</a>
+
+<table class="table table-hover">
+<tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Status</th></tr>
+<tr><td>1</td><td>Anurag</td><td>a@gmail.com</td><td>9876543210</td><td>ACTIVE</td></tr>
+</table>
+Views/Customer/Add.cshtml
+Copy code
+Html
+<h4>Add Customer</h4>
+
+<div class="card form">
+<input class="form-control mb-2" placeholder="Name">
+<input class="form-control mb-2" placeholder="Email">
+<input class="form-control mb-2" placeholder="Phone">
+<select class="form-control mb-2">
+<option>ACTIVE</option><option>INACTIVE</option>
+</select>
+<button class="btn btn-success">Save</button>
+</div>
+6️⃣ PRODUCT & BATCH
+Views/Product/List.cshtml
+Copy code
+Html
+<h4>Products</h4>
+<table class="table">
+<tr><th>Name</th><th>Category</th><th>Price</th></tr>
+<tr><td>Milk</td><td>Dairy</td><td>50</td></tr>
+</table>
+Views/Product/Add.cshtml
+Copy code
+Html
+<h4>Add Product</h4>
+<div class="card form">
+<input class="form-control mb-2" placeholder="Product Name">
+<input class="form-control mb-2" placeholder="Category">
+<input class="form-control mb-2" placeholder="Price">
+<button class="btn btn-success">Save</button>
+</div>
+Views/Product/Batch.cshtml
+Copy code
+Html
+<h4>Add Batch</h4>
+<div class="card form">
+<input type="date" class="form-control mb-2">
+<input type="date" class="form-control mb-2">
+<input class="form-control mb-2" placeholder="Quantity">
+<button class="btn btn-primary">Save</button>
+</div>
+7️⃣ ORDER & BILLING
+Views/Order/List.cshtml
+Copy code
+Html
+<h4>Orders</h4>
+<table class="table">
+<tr><th>Order ID</th><th>Customer</th><th>Total</th></tr>
+<tr><td>101</td><td>Anurag</td><td>500</td></tr>
+</table>
+Views/Order/Place.cshtml
+Copy code
+Html
+<h4>Place Order</h4>
+<div class="card form">
+<input class="form-control mb-2" placeholder="Customer ID">
+<input class="form-control mb-2" placeholder="Product">
+<input class="form-control mb-2" placeholder="Quantity">
+<button class="btn btn-primary">Place Order</button>
+</div>
+8️⃣ INVENTORY & EXPIRY
+Views/Inventory/Stock.cshtml
+Copy code
+Html
+<h4>Stock</h4>
+<table class="table">
+<tr><th>Batch</th><th>Qty</th></tr>
+<tr><td>B001</td><td>50</td></tr>
+</table>
+Views/Inventory/Expiry.cshtml
+Copy code
+Html
+<h4>Expiry Alerts</h4>
+<ul>
+<li class="text-danger">Batch B002 – Expired</li>
+<li class="text-warning">Batch B003 – Near Expiry</li>
+</ul>
+9️⃣ LOGIN
+Views/Auth/Login.cshtml
+Copy code
+Html
+<h4>Login</h4>
+<div class="card form">
+<input class="form-control mb-2" placeholder="Username">
+<input type="password" class="form-control mb-2" placeholder="Password">
+<button class="btn btn-dark">Login</button>
+</div>
+🔟 CSS (Attractive but clean)
+wwwroot/css/app.css
+Copy code
+Css
+body { background:#f4f6f9; font-family:Segoe UI; }
+.app { display:flex; }
+.sidebar {
+ width:230px; min-height:100vh;
+ background:linear-gradient(180deg,#1e3c72,#2a5298);
+ padding:20px;
+}
+.sidebar a {
+ color:white; display:block; margin:10px 0; text-decoration:none;
+}
+.logo { width:100%; margin-bottom:20px; }
+.content { padding:25px; width:100%; }
+.card { border-radius:12px; padding:15px; box-shadow:0 4px 12px rgba(0,0,0,.15); }
+.dash { text-align:center; margin:10px; }
+.dash img { height:50px; }
+.form { max-width:400px; }
+🟢 FINAL CONFIRMATION
+✔ Complete frontend
+✔ Attractive UI
+✔ All modules
+✔ Images + CSS setup
+✔ ASP.NET Core MVC standard
+✔ Cognizant demo ready
+जर तू म्हणशील तर next मी:
+Demo बोलायचा exact script
+Backend जोडायचा roadmap
+GitHub README तयार करून देईन
+फक्त सांग 👍
