@@ -1,17 +1,71 @@
-PS C:\Users\2440835> dotnet --version
-dotnet : The term 'dotnet' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path 
-was included, verify that the path is correct and try again.
-At line:1 char:1
-+ dotnet --version
-+ ~~~~~~
-    + CategoryInfo          : ObjectNotFound: (dotnet:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
+Catalogs results for ".net"
+ | 
 
-PS C:\Users\2440835> .NET SDK install
-.NET : The term '.NET' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
-included, verify that the path is correct and try again.
-At line:1 char:1
-+ .NET SDK install
-+ ~~~~
-    + CategoryInfo          : ObjectNotFound: (.NET:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
+SAP .NET Connector 3.1.5 for Windows
+
+SAP .NET Gateway, Project/Account Restricted CSS
+
+Read More 
+
+Microsoft .NET Core SDK 9.0.300 Windows
+
+Microsoft .NET Core SDK 9.0.300 Windows
+
+Read More 
+
+.NET Framework Developer Pack 4.8 Windows English Freeware
+
+The Microsoft .NET Framework Developer Pack is a comprehensive t
+
+Read More 
+
+Connector for Microsoft .NET 3.0.21.0 Partnership
+
+This license is intended solely for training, learning, or proof
+
+Read More 
+
+Connector for Microsoft .NET 3.9.25.0 Partnership
+
+This license is intended solely for training, learning, or proof
+
+Read More 
+
+.NET Framework 4.8.1 Windows
+
+Enhances accessibility features, including improved high contrast and narrator support
+
+Read More 
+
+MESCIUS Spread for Windows Forms 4.0.3526
+
+Spreadsheet Component, Project/Account Restricted CSS
+
+Read More 
+
+.NetCore Windows Hosting 2.2.8
+
+GitHub .NetCore Windows Hosting 2.2.8 is part of the .NET Core Hosting Bundle, designed to facilitate hosting .NET Core applications on Windows servers.
+
+Read More 
+
+Windows Server Services
+
+Service Catalog request creation for Wintel Services
+
+Read More 
+
+NuGet Package Manager 2.8
+
+Microsoft NuGet Package Manager 2.8 introduced several enhancements for managing packages in .NET projects.Allowed packages to be installed as development dependencies by default
+
+Read More 
+
+NCR Aloha Configuration Center 20.29.3 for Windows
+
+Restaurant Management, Project/Account Restricted CSS
+
+Read More 
+End of results
+If you do not find the required software name click here to raise the software request
+For a hardware product not found, please click here t
